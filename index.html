@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IGCSE Network Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>IGCSE NETWORK LAB SIMULATOR</h1>
+
+<div class="panel">
+<button onclick="addPC()">Add PC</button>
+<button onclick="addSwitch()">Add Switch</button>
+<button onclick="addRouter()">Add Router</button>
+</div>
+
+<div class="panel">
+<h2>Send Packet Between Devices</h2>
+
+Source:
+<select id="sourceDevice"></select>
+
+Destination:
+<select id="destDevice"></select>
+
+<button onclick="sendPacketBetween()">Send Packet</button>
+
+</div>
+
+
+<div id="networkArea">
+
+<svg id="cables"></svg>
+
+<div id="devices"></div>
+
+<div id="packet"></div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>IP Address Analyzer</h2>
+
+<input id="ipInput" placeholder="Enter IP Address">
+<button onclick="analyzeIP()">Analyze</button>
+
+<p id="ipResult"></p>
+
+</div>
+
+<div class="panel">
+
+<h2>DNS Lookup Simulator</h2>
+
+<input id="dnsInput" placeholder="Enter domain (example.com)">
+<button onclick="dnsLookup()">Resolve</button>
+
+<p id="dnsResult"></p>
+
+</div>
+1️⃣ IP Address Analyzer
+
+What the student sees:
+
+A box to enter an IP address
+
+An Analyze button
+
+The result:
+“Detected: Class C”
+
+Example input:
+
+192.168.1.10
+
+Output:
+
+Detected: Class C
+What the Code is Teaching
+
+This tool demonstrates IPv4 classful addressing, which is part of the IGCSE ICT networking syllabus.
+
+An IPv4 address has 4 octets:
+
+192 . 168 . 1 . 10
+
+The first octet determines the class.
+
+Class	Range	Example
+Class A	1 – 126	10.0.0.1
+Class B	128 – 191	172.16.0.1
+Class C	192 – 223	192.168.1.1
+
+<hr>
+<div class="panel">
+
+<h2>Networking Notes</h2>
+
+<h3>1. IP Address and How It Works</h3>
+
+<p>
+An <b>IP address (Internet Protocol address)</b> is a unique number assigned to every device connected to a network. 
+It allows devices to identify and communicate with each other over a network or the Internet.
+</p>
+
+<p>
+Just like a house address helps the postal service deliver letters to the correct location, 
+an IP address helps data packets reach the correct device on a network.
+</p>
+
+<h4>Structure of an IPv4 Address</h4>
+
+<p>
+Most networks use <b>IPv4 addresses</b>, which consist of four numbers separated by dots.
+</p>
+
+<p><b>Example:</b></p>
+
+<pre>192.168.1.10</pre>
+
+<p>
+Each number is called an <b>octet</b> and can range from <b>0 to 255</b>.
+</p>
+
+<pre>
+192   .   168   .   1   .   10
+Octet1   Octet2   Octet3   Octet4
+</pre>
+
+<p>
+The complete IPv4 address is <b>32 bits long</b>, with each octet representing <b>8 bits</b>.
+</p>
+
+<h4>Example in Binary</h4>
+
+<pre>
+192.168.1.10
+
+11000000.10101000.00000001.00001010
+</pre>
+
+<p>
+Computers use the <b>binary version</b>, while humans use the <b>decimal version</b>.
+</p>
+
+<h4>Classes of IPv4 Addresses</h4>
+
+<p>
+Originally, IPv4 addresses were divided into classes based on the <b>first octet</b>.
+</p>
+
+<table border="1" style="margin:auto;border-color:#00ff9c;color:#00ff9c">
+
+<tr>
+<th>Class</th>
+<th>First Octet Range</th>
+<th>Typical Use</th>
+</tr>
+
+<tr>
+<td>Class A</td>
+<td>1 – 126</td>
+<td>Very large networks</td>
+</tr>
+
+<tr>
+<td>Class B</td>
+<td>128 – 191</td>
+<td>Medium sized networks</td>
+</tr>
+
+<tr>
+<td>Class C</td>
+<td>192 – 223</td>
+<td>Small networks</td>
+</tr>
+
+</table>
+
+<h4>Examples</h4>
+
+<pre>
+10.0.0.1      → Class A
+172.16.5.4    → Class B
+192.168.1.10  → Class C
+</pre>
+
+<p>
+Most home and school networks use <b>Class C private addresses</b>, such as:
+</p>
+
+<pre>192.168.1.x</pre>
+
+<h4>How IP Addresses Work in Communication</h4>
+
+<p>
+When a device sends data across a network, the data is broken into small units called <b>packets</b>.
+</p>
+
+<p>Each packet contains:</p>
+
+<ul style="text-align:left;display:inline-block">
+
+<li>Source IP address</li>
+<li>Destination IP address</li>
+<li>Data</li>
+
+</ul>
+
+<p><b>Example:</b></p>
+
+<pre>
+Source: 192.168.1.5
+Destination: 192.168.1.10
+</pre>
+
+<p>
+Routers and switches use the <b>destination IP address</b> to determine where the packet should be sent.
+</p>
+
+<p>
+The packet travels across the network until it reaches the device with the matching IP address.
+</p>
+
+<hr style="border-color:#00ff9c">
+
+<h3>2. DNS (Domain Name System) and How It Works</h3>
+
+<p>
+The <b>Domain Name System (DNS)</b> translates human-friendly website names into IP addresses.
+</p>
+
+<p>Humans prefer to remember names such as:</p>
+
+<pre>
+google.com
+bbc.com
+cambridge.org
+</pre>
+
+<p>
+But computers communicate using <b>IP addresses</b>, for example:
+</p>
+
+<pre>142.250.190.78</pre>
+
+<p>
+DNS acts like a <b>phone book for the Internet</b>.
+</p>
+
+<h4>Why DNS Is Needed</h4>
+
+<p>
+Imagine trying to remember IP addresses for every website:
+</p>
+
+<pre>
+142.250.190.78
+151.101.0.81
+104.244.42.1
+</pre>
+
+<p>This would be extremely difficult.</p>
+
+<p>DNS allows us to type:</p>
+
+<pre>www.google.com</pre>
+
+<p>and the system automatically finds the correct IP address.</p>
+
+<h4>DNS Resolution Process</h4>
+
+<p>When you enter a website address into a browser, several steps occur.</p>
+
+<h4>Step 1 – Browser Cache</h4>
+
+<p>
+The browser first checks its <b>local cache</b> to see if it already knows the IP address.
+If it finds the IP address, it immediately connects to the website.
+</p>
+
+<h4>Step 2 – DNS Request</h4>
+
+<p>
+If the address is not stored locally, the computer sends a request to a <b>DNS server</b>.
+</p>
+
+<p>This server is usually provided by:</p>
+
+<ul style="text-align:left;display:inline-block">
+
+<li>Internet Service Provider (ISP)</li>
+<li>Public DNS services such as Google DNS</li>
+
+</ul>
+
+<h4>Step 3 – DNS Server Lookup</h4>
+
+<p>
+The DNS server searches its records to find the IP address associated with the domain name.
+</p>
+
+<pre>
+google.com → 142.250.190.78
+</pre>
+
+<h4>Step 4 – DNS Response</h4>
+
+<p>
+The DNS server returns the IP address to the user's computer.
+</p>
+
+<h4>Step 5 – Website Connection</h4>
+
+<p>
+The browser now knows the correct IP address and sends a request to the web server hosting the website.
+</p>
+
+<p>
+The server then sends the webpage back to the user's browser.
+</p>
+
+<h4>Summary of the DNS Process</h4>
+
+<pre>
+User enters domain name
+        ↓
+Browser checks cache
+        ↓
+DNS server lookup
+        ↓
+IP address returned
+        ↓
+Browser connects to web server
+</pre>
+
+<h4>Why DNS Is Important</h4>
+
+<p>
+DNS makes the Internet easy to use. Without DNS, users would need to remember numeric IP addresses for every website.
+</p>
+
+<p>DNS provides:</p>
+
+<ul style="text-align:left;display:inline-block">
+
+<li>Easier website access</li>
+<li>Faster connections through caching</li>
+<li>Organized naming of Internet resources</li>
+
+</ul>
+
+</div>
+<script src="lab.js"></script>
+
+</body>
+</html>
