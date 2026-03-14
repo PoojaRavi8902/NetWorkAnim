@@ -254,6 +254,7 @@ let endY = dRect.top + dRect.height/2 - nRect.top;
 packet.style.display="block";
 packet.style.left=startX+"px";
 packet.style.top=startY+"px";
+packet.offsetHeight;
 
 movePacket(startX,startY,switchX,switchY,()=>{
 movePacket(switchX,switchY,endX,endY,()=>{
