@@ -297,13 +297,24 @@ function analyzeIP(){
 
 let ip=document.getElementById("ipInput").value;
 
+if(!ip.includes(".")){
+document.getElementById("ipResult").innerText="Invalid IP format";
+return;
+}
+
 let first=parseInt(ip.split(".")[0]);
+
+if(isNaN(first)){
+document.getElementById("ipResult").innerText="Invalid IP address";
+return;
+}
 
 let type="";
 
-if(first<128) type="Class A";
-else if(first<192) type="Class B";
-else type="Class C";
+if(first>=1 && first<=126) type="Class A";
+else if(first>=128 && first<=191) type="Class B";
+else if(first>=192 && first<=223) type="Class C";
+else type="Unknown / Reserved";
 
 document.getElementById("ipResult").innerText =
 "Detected: "+type;
