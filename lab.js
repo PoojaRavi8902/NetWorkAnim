@@ -127,7 +127,7 @@ let switchWrapper = document.createElement("div");
 switchWrapper.className = "device-wrapper switch-center";
 
 let switchImg = document.createElement("img");
-switchImg.src = "images/switch.png";
+switchImg.src = "switch.png";
 switchImg.className = "device";
 switchImg.id = switchDevice.name;
 
@@ -150,7 +150,7 @@ let wrapper = document.createElement("div");
 wrapper.className = "device-wrapper "+positions[index % positions.length];
 
 let img = document.createElement("img");
-img.src = "images/pc.png";
+img.src = "pc.png";
 img.className = "device";
 img.id = pc.name;
 
@@ -171,7 +171,7 @@ let wrapper = document.createElement("div");
 wrapper.className = "device-wrapper pc-bottom";
 
 let img = document.createElement("img");
-img.src = "images/router.png";
+img.src = "router.png";
 img.className = "device";
 img.id = router.name;
 
